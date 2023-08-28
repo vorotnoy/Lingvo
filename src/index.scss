@@ -1,0 +1,33 @@
+@import './assets/styles/utils/mixins';
+@import './assets/styles/utils/reset-style';
+@import './assets/styles/utils/vars';
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Regular'),
+    url('./assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Medium'),
+      url('./assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Bold'),
+      url('./assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  
+  body {
+    background-color: $main-bckgrd;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    color: $main_color;
+  }

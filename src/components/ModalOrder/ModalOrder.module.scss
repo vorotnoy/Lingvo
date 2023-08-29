@@ -1,0 +1,123 @@
+@import "../../assets/styles/utils/vars";
+@import "../../assets/styles/utils/mixins";
+
+.wrapper {
+  position: absolute;
+  width: 600px;
+  height: 972px;
+  background-color: $main-bckgrd;
+  border-radius: 40px;
+  z-index: 10;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal_block {
+  position: relative;
+
+  padding: 64px;
+}
+.svg_close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  z-index: 20;
+
+  stroke: $main-color;
+
+  cursor: pointer;
+}
+.modal_title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+
+  margin-bottom: 20px;
+}
+.modal_desc {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0em;
+
+  margin-bottom: 20px;
+}
+.modal_teacherblock {
+  display: flex;
+
+  margin-bottom: 40px;
+}
+.modal_teacherblock__avatar {
+  width: 44px;
+  height: 44px;
+
+  margin-right: 14px;
+}
+.modal_teacherblock__head {
+  display: inline;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+
+  color: $text-color;
+
+  margin-bottom: 4px;
+}
+.modal_teacherblock__name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+.modal_radio {
+  margin-bottom: 40px;
+}
+.modal_radio__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0em;
+
+  margin-bottom: 20px;
+}
+.modal_radio__label {
+  display: block;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0em;
+
+  margin-bottom: 10px;
+}
+.modal_regist{
+    margin-bottom: 40px;
+}
+.modal_regist__label {
+}
+.modal_regist__input {
+  width: 472px;
+  height: 54px;
+  padding: 16px 0 16px 18px;
+  border-radius: 12px;
+  border: 1px solid $border-color1;
+
+  margin-bottom: 14px;
+}
+.modal_btn {
+  width: 472px;
+  height: 60px;
+  padding: 16px 215px 16px 215px;
+  border-radius: 12px;
+  background-color: $btn-color;
+  border: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+
+  cursor: pointer;
+}

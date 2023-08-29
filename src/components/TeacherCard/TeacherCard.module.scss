@@ -1,0 +1,157 @@
+@import "../../assets/styles/utils/vars";
+@import "../../assets/styles/utils/mixins";
+
+.wrapper {
+  display: flex;
+  width: 1184px;
+  padding: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 32px;
+  border-radius: 24px;
+  background-color: $main-bckgrd;
+}
+.avatar {
+  margin-right: 48px;
+}
+.avatar_circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid $border-color;
+
+
+}
+.avatar_img__wrapper{
+  position: relative;
+}
+.avatar_img{
+  width: 96px;
+  height: 96px;
+}
+.avatar_online__border{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  top: 7px;
+  right: 11px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color:  $main-bckgrd;
+}
+.avatar_online__circle{
+  // position: absolute;
+  display: block;
+  // top: 7px;
+  // right: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $online-color;
+}
+
+.teacher_block {
+  width: 968px;
+}
+
+.teacher_stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.teacher_stat__list {
+  display: flex;
+  align-items: center;
+}
+.teacher_stat__list > li:not(:last-child) {
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    background-color: $line-color;
+  }
+}
+.teacher_stat__item {
+  display: flex;
+  align-items: center;
+}
+.teacher_stat__text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+.teacher_stat__svg {
+  margin-right: 8px;
+}
+.teacher_name {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+
+  margin-bottom: 32px;
+}
+.teacher_desc {
+  margin-bottom: 16px;
+}
+.teacher_desc__title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+
+  color: $text-color;
+}
+.teacher_desc__text {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+
+  color: $main-color;
+}
+.teacher_more {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+
+  margin-bottom: 32px;
+}
+.teacher_lavel{
+    display: flex;
+    gap: 8px;
+}
+.teacher_lavel__true,
+.teacher_lavel__false{
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+
+  padding: 8px 12px 8px 12px;
+  border-radius: 35px;
+
+ 
+}
+.teacher_lavel__true{
+    background-color: $btn-color;
+}
+
+.teacher_lavel__false {
+    border: 1px solid $line-color;
+}

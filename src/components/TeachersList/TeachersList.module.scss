@@ -1,0 +1,9 @@
+@import "../../assets/styles/utils/vars";
+@import "../../assets/styles/utils/mixins";
+
+.wrapper{
+    background-color: $main-bckgrd1;
+    @include container;
+
+    padding-top: 32px;
+}

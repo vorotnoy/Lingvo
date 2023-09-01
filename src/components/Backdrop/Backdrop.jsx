@@ -57,9 +57,6 @@ export const BackdropModal = ({ children, closeModal }) => {
       document.removeEventListener('mouseup', handleMouseUpOutsideModal);
     };
   }, [handleClose]);
-
-
-  console.log(document.body.scrollHeight)
   return createPortal(
     <div className={s.backdrop} onMouseUp={handleMouseUp} ref={backdropRef}>
       <div

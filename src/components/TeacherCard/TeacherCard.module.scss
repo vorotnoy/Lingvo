@@ -30,6 +30,7 @@
 .avatar_img {
   width: 96px;
   height: 96px;
+  border-radius: 50%;
 }
 .avatar_online__border {
   position: absolute;
@@ -90,6 +91,16 @@
   line-height: 24px;
   letter-spacing: 0em;
 }
+.teacher_stat__price{
+font-family: Montserrat;
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+letter-spacing: 0em;
+
+color: $online-color;
+
+}
 .teacher_stat__svg {
   margin-right: 8px;
 }
@@ -136,8 +147,8 @@
   display: flex;
   gap: 8px;
 }
-.teacher_lavel__true,
-.teacher_lavel__false {
+.teacher_level__true,
+.teacher_level__false {
   display: inline-block;
   font-size: 14px;
   font-weight: 500;
@@ -147,11 +158,11 @@
   padding: 8px 12px 8px 12px;
   border-radius: 35px;
 }
-.teacher_lavel__true {
+.teacher_level__true {
   background-color: $btn-color;
 }
 
-.teacher_lavel__false {
+.teacher_level__false {
   border: 1px solid $line-color;
 }
 .comment_block {
@@ -210,5 +221,18 @@
   margin-top: 32px;
   margin-bottom: 24px;
 
+  cursor: pointer;
+  &:hover{
+    background-color: $hover-color;
+  }
+}
+.teacher_experience {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0em;
+
+  margin-bottom: 32px;
+}
+.svg_heart{
   cursor: pointer;
 }

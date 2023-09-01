@@ -3,6 +3,7 @@ import svg from "../../assets/icons/sprite.svg";
 import { useState } from "react";
 
 export const Registration = ({ openModal, setform}) => {
+
   const  register= ()=> {
     openModal();
     setform(true)

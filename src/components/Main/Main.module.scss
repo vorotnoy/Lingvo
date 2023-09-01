@@ -61,4 +61,7 @@
   letter-spacing: 0em;
 
   cursor: pointer;
+  &:hover{
+    background-color: $hover-color;
+  }
 }

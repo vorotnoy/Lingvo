@@ -52,7 +52,7 @@
 .modal_teacherblock__avatar {
   width: 44px;
   height: 44px;
-
+  border-radius: 50%;
   margin-right: 14px;
 }
 .modal_teacherblock__head {
@@ -86,14 +86,48 @@
 }
 .modal_radio__label {
   display: block;
+  position: relative;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0em;
 
   margin-bottom: 10px;
 }
-.modal_regist{
-    margin-bottom: 40px;
+.modal_radio__input {
+  display:none;
+}
+.modal_radio__label {
+margin-left: 32px;
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 0px;
+    left: -32px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid $line-color;
+    border-radius: 50%;
+  }
+}
+.modal_radio__input:checked +.modal_radio__label{
+  &::before {
+    border: 2px solid $btn-color;
+  }
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 5px;
+    left: -27px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $btn-color;
+  }
+}
+.modal_regist {
+  margin-bottom: 40px;
 }
 .modal_regist__label {
 }
@@ -120,4 +154,7 @@
   letter-spacing: 0em;
 
   cursor: pointer;
+  &:hover{
+    background-color: $hover-color;
+  }
 }

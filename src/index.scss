@@ -26,6 +26,13 @@
       url('./assets/fonts/Inter/Inter-Medium.ttf') format('truetype');
     font-weight: 500;
   }
+
+  @font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat-SemiBold'),
+      url('./assets/fonts/Montserrat/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
   body {
     background-color: $main-bckgrd;
     margin: 0;

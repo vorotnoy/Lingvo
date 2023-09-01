@@ -1,12 +1,41 @@
 import s from "./ModalRegister.module.scss";
 import { BackdropModal } from "../Backdrop/Backdrop";
 import svg from "../../assets/icons/sprite.svg";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/auth/authOperation";
+import { loginUser } from "../../redux/auth/authOperation";
 
-export const ModalRegister = ({ onClose, typeForm }) => {
+export const ModalRegister = ({ onClose, typeForm,  onSubmit }) => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const dispatch = useDispatch();
+
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
+
+  const userOn = (data) => {
+    if (typeForm) {
+       dispatch(addUser(data));
+    } else {
+       dispatch(loginUser(data));
+    }
+  };
+
+
+  const submit = (e) => {
+    e.preventDefault();
+    const user = {
+      name,
+      email,
+      password,
+    };
+    userOn(user)
+    onClose();
+  };
+
   return (
     <BackdropModal closeModal={onClose}>
       <div className={s.wrapper}>
@@ -19,7 +48,7 @@ export const ModalRegister = ({ onClose, typeForm }) => {
           >
             <use href={svg + "#icon-close"}></use>
           </svg>
-          <form>
+          <form onSubmit={submit}>
             {typeForm && (
               <>
                 <h3 className={s.modal_title}>Registration</h3>
@@ -48,6 +77,7 @@ export const ModalRegister = ({ onClose, typeForm }) => {
                     name="name"
                     placeholder="Full Name"
                     className={s.modal_regist__input}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </label>
               )}
@@ -57,14 +87,16 @@ export const ModalRegister = ({ onClose, typeForm }) => {
                   name="email"
                   placeholder="Email"
                   className={s.modal_regist__input}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
               <label className={s.modal_regist__label}>
                 <input
-                  type="phone"
-                  name="phone"
-                  placeholder="Phone number"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
                   className={s.modal_regist__input}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
             </div>

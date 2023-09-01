@@ -9,7 +9,7 @@ export const Navigation = () => {
             Home
           </NavLink>
         </li>
-        <li>
+        <li className={s.link_item}>
           <NavLink to="/teachers" className={s.link}>
             Teachers
           </NavLink>

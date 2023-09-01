@@ -1,7 +1,9 @@
 import s from "./TeacherCard.module.scss";
 import svg from "../../assets/icons/sprite.svg";
 import img from "../../assets/images/avatar.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { auth } from "../../firebase/config";
 
 const Comment = ({ name, rating, text }) => {
   return (
@@ -22,20 +24,86 @@ const Comment = ({ name, rating, text }) => {
   );
 };
 
-export const TeacherCard = ({openModal}) => {
+export const TeacherCard = ({
+  data,
+  openModal,
+  teacher,
+  openModalLogin,
+  favList,
+  isAuth,
+  addFavorite,
+  delFavorite,
+}) => {
+  const user = auth.currentUser;
+  const {
+    avatar_url,
+    conditions,
+    experience,
+    languages,
+    lesson_info,
+    lessons_done,
+    levels,
+    name,
+    price_per_hour,
+    rating,
+    reviews,
+    surname,
+    id,
+  } = data;
+
   const [order, setOrder] = useState(false);
+  const [inFavorite, setInFavorite] = useState();
+
+  useEffect(() => {
+    const fav = favList?.includes(id);
+    setInFavorite(fav);
+  });
+
   function ordered() {
     setOrder(true);
   }
-  function modalOpen(){
-    openModal()
+
+  function modalOpen() {
+    const teacherData = {
+      name,
+      surname,
+      avatar_url,
+    };
+    teacher(teacherData);
+    openModal();
   }
+
+  const addFav = () => {
+    if (!isAuth) {
+      openModalLogin();
+      return;
+    }
+    const addfav = {
+      id: id,
+      user: user.uid,
+    };
+    addFavorite(addfav);
+  };
+
+  const delFav = () => {
+    if (!isAuth) {
+      openModalLogin();
+      return;
+    }
+    console.log("del");
+    const delfav = {
+      id: id,
+      user: user.uid,
+    };
+    delFavorite(delfav);
+  };
+
   return (
     <section className={s.wrapper}>
       <div className={s.avatar}>
         <div className={s.avatar_circle}>
           <div className={s.avatar_img__wrapper}>
-            <img src={img} alt="" className={s.avatar_img} />
+            <img src={avatar_url} alt=" " className={s.avatar_img} />
             <div className={s.avatar_online__border}>
               <div className={s.avatar_online__circle}></div>
             </div>
@@ -53,63 +121,91 @@ export const TeacherCard = ({openModal}) => {
               <p className={s.teacher_stat__text}>Lessons online</p>
             </li>
             <li className={s.teacher_stat__item}>
-              <p className={s.teacher_stat__text}>Lessons done: 1098</p>
+              <p className={s.teacher_stat__text}>
+                Lessons done: {lessons_done}
+              </p>
             </li>
             <li className={s.teacher_stat__item}>
               <svg width="16" height="16" className={s.teacher_stat__svg}>
                 <use href={svg + "#icon-star"}></use>
               </svg>
-              <p className={s.teacher_stat__text}>Rating: 4.8</p>
+              <p className={s.teacher_stat__text}>Rating: {rating}</p>
             </li>
             <li className={s.teacher_stat__item}>
-              <p className={s.teacher_stat__text}>Price / 1 hour: 30$</p>
+              <p className={s.teacher_stat__text}>
+                Price / 1 hour:
+                <span className={s.teacher_stat__price}>{price_per_hour}$</span>
+              </p>
             </li>
           </ul>
-          <svg width="16" height="16">
-            <use href={svg + "#icon-heart"}></use>
-          </svg>
+          {inFavorite && (
+            <svg
+              width="16"
+              height="16"
+              onClick={delFav}
+              className={s.svg_heart}
+            >
+              <use href={svg + "#icon-heartplus"}></use>
+            </svg>
+          )}
+          {!inFavorite && (
+            <svg
+              width="16"
+              height="16"
+              onClick={addFav}
+              className={s.svg_heart}
+            >
+              <use href={svg + "#icon-heart"}></use>
+            </svg>
+          )}
         </div>
-        <p className={s.teacher_name}>Jane Smith</p>
+        <p className={s.teacher_name}>
+          {name} {surname}
+        </p>
         <div className={s.teacher_desc}>
           <p className={s.teacher_desc__title}>
-            Speaks:<span className={s.teacher_desc__text}> German, French</span>
+            Speaks:
+            <span className={s.teacher_desc__text}>{languages.join(", ")}</span>
           </p>
+
           <p className={s.teacher_desc__title}>
             Lesson Info:
-            <span className={s.teacher_desc__text}>
-              Lessons are structured to cover grammar, vocabulary, and practical
-              usage of the language.
-            </span>
+            <span className={s.teacher_desc__text}> {lesson_info}</span>
           </p>
           <p className={s.teacher_desc__title}>
             Conditions:
-            <span className={s.teacher_desc__text}>
-              Welcomes both adult learners and teenagers (13 years and
-              above).Provides personalized study plans
-            </span>
+            <span className={s.teacher_desc__text}>{conditions}</span>
           </p>
         </div>
+        {!order && (
+          <p className={s.teacher_more} onClick={ordered}>
+            Read more
+          </p>
+        )}
+
         {order && (
           <>
-            <Comment
-              name="Frank"
-              rating="4.0"
-              text="Jane's lessons were very helpful. I made good progress."
-            />
-            <Comment
-              name="Eve"
-              rating="5.0"
-              text="Jane is an amazing teacher! She is patient and supportive."
-            />
+            <p className={s.teacher_experience}>{experience}</p>
+            <ul>
+              {reviews.map((item) => (
+                <li key={uuidv4()}>
+                  <Comment
+                    name={item.reviewer_name}
+                    rating={item.reviewer_rating}
+                    text={item.comment}
+                  />
+                </li>
+              ))}
+            </ul>
           </>
         )}
 
-        {!order&&<p className={s.teacher_more} onClick={ordered}>Read more</p>}
         <ul className={s.teacher_lavel}>
-          <li className={s.teacher_lavel__true}>#A1 Beginner</li>
-          <li className={s.teacher_lavel__false}>#A2 Elementary</li>
-          <li className={s.teacher_lavel__false}>#B1 Intermediate</li>
-          <li className={s.teacher_lavel__false}>#B2 Upper-Intermediate</li>
+          {levels.map((item) => (
+            <li className={s.teacher_level__false} key={uuidv4()}>
+              {item}
+            </li>
+          ))}
         </ul>
         {order && (
           <button type="button" className={s.btn_order} onClick={modalOpen}>

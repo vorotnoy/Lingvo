@@ -6,7 +6,7 @@ import {
   addFavFirebase,
   getAllFavFirebase,
   delFavFirebase
-} from "../../firebase/db";
+} from "../../services/firebase/db";
 
 export const getAll = createAsyncThunk(
   "teacher/getall",
@@ -50,7 +50,6 @@ export const getFavorite = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const arrayFav = await getAllFavFirebase();
-      console.log("arrayFav", arrayFav);
       return arrayFav;
     } catch (error) {
       console.log("error", error);
@@ -65,6 +64,7 @@ export const resetAll = createAsyncThunk(
     console.log("out");
   }
 );
+
 export const delFavorite = createAsyncThunk(
   "teacher/delfav",
   async (data, thunkAPI) => {

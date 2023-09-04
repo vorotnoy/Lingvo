@@ -1,8 +1,9 @@
-import { TeachersList } from "../../components/TeachersList/TeachersList"
-export const TeachersPage =()=>{
+import { Teachers } from "../../components/Teachers/Teachers"
+
+export const TeachersPage =({isAuth})=>{
     return(
         <>
-          <TeachersList/>  
+          <Teachers isAuth={isAuth}/>  
         </>
     )
 }

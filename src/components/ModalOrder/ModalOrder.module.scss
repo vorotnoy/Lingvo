@@ -4,7 +4,7 @@
 .wrapper {
   position: absolute;
   width: 600px;
-  height: 972px;
+  height: 100vh;
   background-color: $main-bckgrd;
   border-radius: 40px;
   z-index: 10;
@@ -12,6 +12,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
+
 }
 .modal_block {
   position: relative;
@@ -36,6 +37,9 @@
   letter-spacing: -0.02em;
 
   margin-bottom: 20px;
+}
+.scroll_block{
+  overflow-y: auto;
 }
 .modal_desc {
   font-size: 16px;

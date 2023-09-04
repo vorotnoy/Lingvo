@@ -4,18 +4,18 @@ import { addUser, logOutUser, loginUser } from "./authOperation";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    email: ""
+    uid: ""
   },
   extraReducers: (builder) => {
     builder
       .addCase(addUser.fulfilled, (state,  {payload} ) => {
-        state.email = payload;
+        state.uid = payload;
       })
       .addCase(logOutUser.fulfilled, (state, { payload }) => {
-        state.email = "";
+        state.uid = "";
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        state.email = payload;
+        state.uid = payload;
       })
       .addMatcher(
         (action) =>

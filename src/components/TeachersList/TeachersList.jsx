@@ -7,31 +7,23 @@ import {
   getAll,
   getLength,
   addFavorite,
-  delFavorite
+  delFavorite,
 } from "../../redux/Teachers/teacherOperation";
-import {
-  selectTeacherList,
-  selectLength,
-} from "../../redux/Teachers/teacherSelectors";
-import { ModalRegister } from "../ModalRegister/ModalRegister";
+import { selectLength } from "../../redux/Teachers/teacherSelectors";
+import { ModalSignin } from "../ModalSIgnIn/ModalSignin";
 import { loginUser } from "../../redux/auth/authOperation";
 import { selectFavorite } from "../../redux/Teachers/teacherSelectors";
-import { selectEmail } from "../../redux/auth/authSelectors";
-export const TeachersList = () => {
-  const isAuth = useSelector(selectEmail);
+
+export const TeachersList = ({ typeOfPage, listOfTeachers, isAuth }) => {
+  const dispatch = useDispatch();
   const favList = useSelector(selectFavorite);
   const arrayLength = useSelector(selectLength);
   const [teacherName, setTeacherName] = useState();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getLength());
     dispatch(getAll(4));
   }, []);
-
-  const listOfTeachers = useSelector(selectTeacherList);
-
 
   const loadMore = () => {
     let end = listOfTeachers.length + 4;
@@ -45,18 +37,28 @@ export const TeachersList = () => {
   const [showModalLoginWindow, setShowModaLoginlWindow] = useState(false);
   const handleModalLoginWindowOpen = () => setShowModaLoginlWindow(true);
   const handleModalLoginWindowClose = () => setShowModaLoginlWindow(false);
+
+  useEffect(() => {
+    if (showModalWindow || showModalLoginWindow) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [showModalWindow, showModalLoginWindow]);
+
   if (listOfTeachers.length === 0) return;
 
   const user = (data) => {
     dispatch(loginUser(data));
   };
 
-  const addFav = (data)=>{
-    dispatch(addFavorite(data))
-  }
-const delFav=(data)=>{
-  dispatch(delFavorite(data))
-}
+  const addFav = (data) => {
+    dispatch(addFavorite(data));
+  };
+  const delFav = (data) => {
+    dispatch(delFavorite(data));
+  };
+  console.log("list");
   return (
     <section className={s.wrapper}>
       <ul>
@@ -75,7 +77,7 @@ const delFav=(data)=>{
           </li>
         ))}
       </ul>
-      {arrayLength > listOfTeachers.length && (
+      {arrayLength > listOfTeachers.length && typeOfPage && (
         <button type="button" className={s.btn_load} onClick={loadMore}>
           Load more
         </button>
@@ -84,11 +86,7 @@ const delFav=(data)=>{
         <ModalOrder onClose={handleModalWindowClose} name={teacherName} />
       )}
       {showModalLoginWindow && (
-        <ModalRegister
-          onSubmit={user}
-          onClose={handleModalLoginWindowClose}
-          typeForm={false}
-        />
+        <ModalSignin onSubmit={user} onClose={handleModalLoginWindowClose} />
       )}
     </section>
   );

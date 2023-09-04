@@ -14,6 +14,11 @@ export const Navigation = () => {
             Teachers
           </NavLink>
         </li>
+        <li className={s.link_item}>
+          <NavLink to="/favorite" className={s.link}>
+            Favorite
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

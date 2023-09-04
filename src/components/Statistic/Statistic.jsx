@@ -1,4 +1,5 @@
 import s from "./Statistic.module.scss";
+
 const ContentBlock = ({ title, desc }) => {
   return (
     <div className={s.contentBlock_wrapper}>
@@ -9,6 +10,7 @@ const ContentBlock = ({ title, desc }) => {
 };
 
 export const Statistic = () => {
+
   return (
     <section className={s.wrapper}>
       <ul className={s.statistic_list}>

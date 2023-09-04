@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import s from './Backdrop.module.scss';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const BackdropModal = ({ children, closeModal }) => {
+export const BackdropModal = ({ children, closeModal}) => {
+
   const backdropRef = useRef(null);
   const modalRef = useRef(null);
   const isMouseDownRef = useRef(false);
@@ -57,6 +58,7 @@ export const BackdropModal = ({ children, closeModal }) => {
       document.removeEventListener('mouseup', handleMouseUpOutsideModal);
     };
   }, [handleClose]);
+  console.log('back')
   return createPortal(
     <div className={s.backdrop} onMouseUp={handleMouseUp} ref={backdropRef}>
       <div

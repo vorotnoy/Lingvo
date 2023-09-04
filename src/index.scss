@@ -42,4 +42,7 @@
     -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
     color: $main_color;
+    & .no-scroll {
+      overflow: hidden;
+    }
   }

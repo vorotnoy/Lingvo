@@ -4,6 +4,7 @@ import { Statistic } from "../Statistic/Statistic";
 import { NavLink } from "react-router-dom";
 
 export const Main = () => {
+  // console.log('main')
   return (
     <section className={s.wrapper}>
       <div className={s.info_block}>
@@ -18,7 +19,7 @@ export const Main = () => {
             highly qualified and experienced tutors.
           </p>
 
-          <NavLink to="/teachers" className={s.link}>
+          <NavLink to='/teachers'>
             <button type="button" className={s.info_block__btn}>
               Get started
             </button>

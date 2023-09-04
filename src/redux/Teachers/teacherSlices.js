@@ -29,7 +29,6 @@ const teacherSlice = createSlice({
       .addCase(delFavorite.fulfilled, (state, { payload }) => {
         const del = state.favorite.indexOf(payload);
         state.favorite.splice(del,1)
-        console.log(payload);
       })
       .addCase(getFavorite.fulfilled, (state, { payload }) => {
         state.favorite = payload;

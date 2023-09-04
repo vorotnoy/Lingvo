@@ -5,6 +5,8 @@ import {
   onAuthStateChanged,
   updateProfile,
   signOut,
+  setPersistence,
+  browserSessionPersistence,
 } from "firebase/auth";
 import { auth } from "./config";
 
@@ -33,7 +35,9 @@ export const createUserFirebase = async ({ email, password, name }) => {
 };
 export const logOutUserFirebase = () => {
   try {
-    signOut(auth);
+    signOut(auth).then(() => {
+      return 'logout';
+    });
   } catch (error) {
     throw error;
   }
@@ -41,10 +45,30 @@ export const logOutUserFirebase = () => {
 
 export const loginUserFirebase = async ({ email, password }) => {
   try {
-    const credentials = await signInWithEmailAndPassword(auth, email, password);
-    return credentials.user.email;
+    const credentials = await signInWithEmailAndPassword(auth, email, password)
+    return credentials.user.uid;
   } catch (error) {
     throw error;
   }
 };
 
+// export const loginUserFirebase = async ({ email, password }) => {
+//   await setPersistence(auth, browserSessionPersistence)
+//     .then(() => {
+//       return (
+//         signInWithEmailAndPassword(auth, email, password)
+//         .then((data) => {
+//           if (data.user.uid) {
+//              return data.user;
+//           } else {
+//             console.log("wrong");
+//           }
+//         }
+//       ))
+//     })
+//     .catch((error) => {
+//       // Handle Errors here.
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//     });
+// };

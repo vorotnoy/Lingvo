@@ -3,7 +3,9 @@ import svg from "../../assets/icons/sprite.svg";
 import img from "../../assets/images/avatar.jpg";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { auth } from "../../firebase/config";
+import { auth } from "../../services/firebase/config";
+import { useSelector } from "react-redux";
+import { selectUid } from "../../redux/auth/authSelectors";
 
 const Comment = ({ name, rating, text }) => {
   return (
@@ -34,7 +36,6 @@ export const TeacherCard = ({
   addFavorite,
   delFavorite,
 }) => {
-  const user = auth.currentUser;
   const {
     avatar_url,
     conditions,
@@ -50,12 +51,14 @@ export const TeacherCard = ({
     surname,
     id,
   } = data;
-
+  const userID = useSelector(selectUid);
   const [order, setOrder] = useState(false);
   const [inFavorite, setInFavorite] = useState();
 
   useEffect(() => {
-    const fav = favList?.includes(id);
+    const fav = favList?.find((item) => {
+      return item.id === id;
+    });
     setInFavorite(fav);
   });
 
@@ -72,7 +75,6 @@ export const TeacherCard = ({
     teacher(teacherData);
     openModal();
   }
-
   const addFav = () => {
     if (!isAuth) {
       openModalLogin();
@@ -80,7 +82,8 @@ export const TeacherCard = ({
     }
     const addfav = {
       id: id,
-      user: user.uid,
+      user: userID,
+      teacher: data,
     };
     addFavorite(addfav);
   };
@@ -90,14 +93,13 @@ export const TeacherCard = ({
       openModalLogin();
       return;
     }
-    console.log("del");
     const delfav = {
       id: id,
-      user: user.uid,
+      user: userID,
     };
     delFavorite(delfav);
   };
-
+  // console.log('card',favList, inFavorite )
   return (
     <section className={s.wrapper}>
       <div className={s.avatar}>

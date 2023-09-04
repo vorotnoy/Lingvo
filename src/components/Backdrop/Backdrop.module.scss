@@ -1,6 +1,8 @@
 
 @import '../../assets/styles/utils/vars';
-
+body ~.backdrop{
+  overflow: hidden;
+}
 .backdrop {
   position: fixed;
   top: 0;

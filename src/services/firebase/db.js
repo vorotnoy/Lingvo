@@ -38,10 +38,11 @@ export const getAllTeachersFirebase = async (end) => {
   }
 };
 
-export const addFavFirebase = async ({ user, id }) => {
+export const addFavFirebase = async ({ user, id, teacher}) => {
   try {
-    set(ref(db, "favorite/" + user + "/" + id), { id });
-    return id;
+    set(ref(db, "favorite/" + user + "/" + id), { teacher });
+
+    return teacher;
   } catch (error) {
     console.log(error);
     throw error;
@@ -64,7 +65,9 @@ export const getAllFavFirebase = async () => {
       const resp = query(ref(db, "favorite/" + currentUser));
       await get(resp).then((data) => {
         if (data.exists()) {
-          data.val().map((item) => arr.push(item.id));
+          const arrayFav = Object.entries(data.val())
+          arrayFav.forEach(([key, value])=>
+          arr.push(value.teacher))
         } else {
           console.log("No data available");
         }

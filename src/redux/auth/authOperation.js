@@ -4,7 +4,7 @@ import {
   createUserFirebase,
   logOutUserFirebase,
   loginUserFirebase,
-} from "../../firebase/auth";
+} from "../../services/firebase/auth";
 import { resetAll } from "../Teachers/teacherOperation";
 
 export const addUser = createAsyncThunk(
@@ -25,7 +25,6 @@ export const logOutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await logOutUserFirebase();
-      return "User logout";
     } catch (error) {
       console.log("error", error);
       thunkAPI.rejectWithValue(error.message);
@@ -45,4 +44,5 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
- 
+
+

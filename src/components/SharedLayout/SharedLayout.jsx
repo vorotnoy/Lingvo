@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../Header/Header";
-export const SharedLayout = () => {
-  console.log('shared')
 
-
+export const SharedLayout = ({isAuth}) => {
+  // console.log('shared')
   return (
     <>
-      <Header  />
-      {/* <Outlet/> */}
+      <Header user={isAuth} />
+      <Outlet />
     </>
   );
 };

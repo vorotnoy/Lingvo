@@ -1,1 +1,1 @@
-export const selectEmail = (state) => state.auth.email;
+export const selectUid = (state) => state.auth.uid;

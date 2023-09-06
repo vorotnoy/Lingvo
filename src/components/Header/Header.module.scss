@@ -1,17 +1,19 @@
 @import "../../assets/styles/utils/vars";
-@import '../../assets/styles/utils/mixins';
+@import "../../assets/styles/utils/mixins";
 
 .wrapper {
+  @include container;
 }
-.nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.logo{
-    display: flex;
-    align-items: center;
+.logo {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .logo_image {
   width: 28px;

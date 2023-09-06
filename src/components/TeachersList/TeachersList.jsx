@@ -58,10 +58,10 @@ export const TeachersList = ({ typeOfPage, listOfTeachers, isAuth }) => {
   const delFav = (data) => {
     dispatch(delFavorite(data));
   };
-  console.log("list");
+  // console.log("list");
   return (
     <section className={s.wrapper}>
-      <ul>
+      <ul className={s.listOfCards}>
         {listOfTeachers.map((item) => (
           <li key={item.id}>
             <TeacherCard

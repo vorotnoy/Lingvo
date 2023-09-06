@@ -10,7 +10,6 @@ const ContentBlock = ({ title, desc }) => {
 };
 
 export const Statistic = () => {
-
   return (
     <section className={s.wrapper}>
       <ul className={s.statistic_list}>

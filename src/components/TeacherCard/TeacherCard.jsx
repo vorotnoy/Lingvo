@@ -3,7 +3,6 @@ import svg from "../../assets/icons/sprite.svg";
 import img from "../../assets/images/avatar.jpg";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { auth } from "../../services/firebase/config";
 import { useSelector } from "react-redux";
 import { selectUid } from "../../redux/auth/authSelectors";
 
@@ -114,7 +113,7 @@ export const TeacherCard = ({
       </div>
       <div className={s.teacher_block}>
         <div className={s.teacher_stat}>
-          <p className={s.teacher_stat__Lang}>Languages</p>
+          <p className={s.teacher_stat__lang}>Languages</p>
           <ul className={s.teacher_stat__list}>
             <li className={s.teacher_stat__item}>
               <svg width="16" height="16" className={s.teacher_stat__svg}>
@@ -142,8 +141,8 @@ export const TeacherCard = ({
           </ul>
           {inFavorite && (
             <svg
-              width="16"
-              height="16"
+              width="26"
+              height="26"
               onClick={delFav}
               className={s.svg_heart}
             >
@@ -152,8 +151,8 @@ export const TeacherCard = ({
           )}
           {!inFavorite && (
             <svg
-              width="16"
-              height="16"
+              width="26"
+              height="26"
               onClick={addFav}
               className={s.svg_heart}
             >

@@ -3,9 +3,29 @@
 
 .wrapper {
   background-color: $main-bckgrd1;
-  @include container;
-
+  
   padding-top: 32px;
+  @include container;
+  @include mobileplus{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include tablet{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  @include desktop{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+.listOfCards >li:not(:last-child){
+  @include mobileplus{
+    margin-bottom: 15px;
+  }
+  @include tablet{
+    margin-bottom:20px ;
+  }
 }
 
 .btn_load {

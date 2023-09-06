@@ -17,7 +17,7 @@ const SigninSchema = Yup.object().shape({
 
 export const ModalSignin = ({ onClose }) => {
   const dispatch = useDispatch();
-
+  const [showPassword, setShowPassword] = useState(true);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -33,6 +33,9 @@ export const ModalSignin = ({ onClose }) => {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
+  const toggleShowPass = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <BackdropModal closeModal={onClose}>
@@ -70,15 +73,23 @@ export const ModalSignin = ({ onClose }) => {
               </label>
               <label className={s.modal_regist__label}>
                 <input
-                  type="password"
+                  type={showPassword ? "password" : "text"}
                   name="password"
                   placeholder="Password"
                   className={s.modal_regist__input}
-                  // onChange={(e) => setPassword(e.target.value)}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
                 />
+                <svg
+                  width="20"
+                  height="20"
+                  className={s.svg_showpassword}
+                  onClick={toggleShowPass}
+                >
+                  {showPassword && <use href={svg + "#icon-eye-off"}></use>}
+                  {!showPassword && <use href={svg + "#icon-eye"}></use>}
+                </svg>
                 {formik.errors.password && formik.touched.password && (
                   <span className={s.error}>{formik.errors.password}</span>
                 )}

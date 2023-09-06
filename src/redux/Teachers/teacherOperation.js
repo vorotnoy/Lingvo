@@ -61,7 +61,6 @@ export const getFavorite = createAsyncThunk(
 export const resetAll = createAsyncThunk(
   "teacher/resetall",
   async (_, thunkAPI) => {
-    console.log("out");
   }
 );
 

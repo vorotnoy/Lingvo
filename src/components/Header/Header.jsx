@@ -11,24 +11,38 @@ import { resetAll } from "../../redux/Teachers/teacherOperation";
 import { Registration } from "../Registration/Registration";
 import { Logout } from "../Logout/Logout";
 import { ModalSignin } from "../ModalSIgnIn/ModalSignin";
-
+import { useMediaQuery } from "react-responsive";
+import svg from "../../assets/icons/sprite.svg";
+import { Sidebar } from "../Sidebar/Sidebar";
 export const Header = ({ user }) => {
   const dispatch = useDispatch();
+
   const [showModalSignup, setShowModalSignup] = useState(false);
-  const SignUpWindowOpen = () => setShowModalSignup(true);
+  const SignUpWindowOpen = () => (
+    setShowModalSignup(true), SidebarWindowClose()
+  );
   const SignUpWindowClose = () => setShowModalSignup(false);
+
   const [showModalSignin, setShowModalSignin] = useState(false);
-  const SignInWindowOpen = () => setShowModalSignin(true);
+  const SignInWindowOpen = () => {
+    setShowModalSignin(true), SidebarWindowClose();
+  };
   const SignInWindowClose = () => setShowModalSignin(false);
+
+  const [showModalSidebar, setShowModalSidebar] = useState(false);
+  const SidebarWindowOpen = () => setShowModalSidebar(true);
+  const SidebarWindowClose = () => setShowModalSidebar(false);
+
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   useEffect(() => {
-    if (showModalSignup||showModalSignin) {
+    if (showModalSignup || showModalSignin) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [showModalSignup, showModalSignin])
+  }, [showModalSignup, showModalSignin]);
 
   useEffect(() => {
     if (user) {
@@ -41,24 +55,47 @@ export const Header = ({ user }) => {
     await dispatch(logOutUser());
     navigate("/");
   };
-  console.log("header", user);
   return (
     <>
-      <header className={s.container}>
+      <header className={s.wrapper}>
         <nav className={s.nav}>
           <NavLink to="/" className={s.logo}>
             <img src={logo} alt="Lingvo" className={s.logo_image} />
             <p className={s.logo_title}>LearnLingo</p>
           </NavLink>
-          <Navigation />
-          {!user && <Registration signup={SignUpWindowOpen} 
-            signin={SignInWindowOpen}
-          />}
-          {user && <Logout logout={logout} />}
+          {!isMobile && (
+            <>
+              <Navigation />
+              {!user && (
+                <Registration
+                  signup={SignUpWindowOpen}
+                  signin={SignInWindowOpen}
+                />
+              )}
+              {user && <Logout logout={logout} />}
+            </>
+          )}
+          {isMobile && (
+            <svg width="20" height="20" onClick={SidebarWindowOpen}>
+              <use href={svg + "#icon-burger"}></use>
+            </svg>
+          )}
         </nav>
       </header>
-      {showModalSignup && <ModalSignup onClose={SignUpWindowClose} toggleModal={showModalSignup}/>}
+      {showModalSignup && (
+        <ModalSignup
+          onClose={SignUpWindowClose}
+          toggleModal={showModalSignup}
+        />
+      )}
       {showModalSignin && <ModalSignin onClose={SignInWindowClose} />}
+      {showModalSidebar && (
+        <Sidebar
+          onClose={SidebarWindowClose}
+          signup={SignUpWindowOpen}
+          signin={SignInWindowOpen}
+        />
+      )}
     </>
   );
 };

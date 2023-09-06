@@ -1,6 +1,6 @@
 @import "../../assets/styles/utils/vars";
 
-.wrapper{
+.wrapper {
   display: flex;
   align-items: center;
 }
@@ -10,7 +10,7 @@
   line-height: 20px;
   letter-spacing: 0em;
   margin-right: 8px;
-  &:hover{
+  &:hover {
     color: $hover-color;
   }
 }
@@ -23,9 +23,8 @@
   cursor: pointer;
 }
 .svg {
-
 }
-.user{
+.user {
   font-size: 20px;
   font-weight: 700;
   line-height: 20px;

@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+import s from "./Backdrop.module.scss";
 
-import s from './Backdrop.module.scss';
+const modalRoot = document.querySelector("#modal-root");
 
-const modalRoot = document.querySelector('#modal-root');
-
-export const BackdropModal = ({ children, closeModal}) => {
-
+export const BackdropModal = ({ children, closeModal }) => {
   const backdropRef = useRef(null);
   const modalRef = useRef(null);
   const isMouseDownRef = useRef(false);
@@ -27,21 +25,21 @@ export const BackdropModal = ({ children, closeModal}) => {
     }
   }, [handleClose]);
 
-  const handleModalClick = useCallback(event => {
+  const handleModalClick = useCallback((event) => {
     event.stopPropagation();
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.key === 'Escape') {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
         event.stopPropagation();
         handleClose();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [handleClose]);
 
@@ -53,12 +51,11 @@ export const BackdropModal = ({ children, closeModal}) => {
       }
     };
 
-    document.addEventListener('mouseup', handleMouseUpOutsideModal);
+    document.addEventListener("mouseup", handleMouseUpOutsideModal);
     return () => {
-      document.removeEventListener('mouseup', handleMouseUpOutsideModal);
+      document.removeEventListener("mouseup", handleMouseUpOutsideModal);
     };
   }, [handleClose]);
-  console.log('back')
   return createPortal(
     <div className={s.backdrop} onMouseUp={handleMouseUp} ref={backdropRef}>
       <div
@@ -70,6 +67,6 @@ export const BackdropModal = ({ children, closeModal}) => {
         {children}
       </div>
     </div>,
-    modalRoot,
+    modalRoot
   );
 };

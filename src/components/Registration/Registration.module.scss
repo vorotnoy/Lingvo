@@ -1,7 +1,12 @@
 @import "../../assets/styles/utils/vars";
+@import "../../assets/styles/utils/mixins";
+
 .wrapper{
   display: flex;
   align-items: center;
+  @include mobileplus{
+    flex-direction: column;
+  }
 }
 .btn_login {
   display: flex;

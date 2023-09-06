@@ -1,49 +1,113 @@
 @import "../../assets/styles/utils/vars";
-@import '../../assets/styles/utils/mixins';
+@import "../../assets/styles/utils/mixins";
 
 .wrapper {
-    @include container
+  @include container;
+
+  @include mobile {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  @include tablet {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @include desktop {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 .info_block {
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
+  @include mobileplus {
+    flex-direction: column;
+  }
 }
 .info_block__content {
-  width: 720px;
-  height: 530px;
   border-radius: 30px;
-
   background-color: $main-bckgrd1;
-
-  margin-right: 24px;
-
-  padding: 98px 64px;
+  @include mobile {
+    padding: 20px 15px;
+    margin-bottom: 15px;
+  }
+  @include tablet {
+    padding: 20px 20px;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+  @include desktop {
+    width: 720px;
+    height: 530px;
+    margin-right: 24px;
+    padding: 98px 64px;
+  }
 }
-.avatar {
-  width: 568px;
-  height: 530px;
-  border-radius: 30px;
-}
+
 .info_block__span {
-  font-size: 48px;
   font-style: italic;
-  line-height: 56px;
-  letter-spacing: -0.02em;
+  @include mobileplus {
+    font-size: 30px;
+  }
+  @include tablet {
+    font-size: 36px;
+  }
+  @include desktop {
+    font-size: 48px;
+  }
 }
 .info_block__title {
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 56px;
   letter-spacing: -0.02em;
-  margin-bottom: 32px;
+ 
+  font-weight: 500;
+  @include mobileplus {
+    font-size: 30px;
+    line-height: 36px;
+
+    margin-bottom: 10px;
+  }
+  @include tablet {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+  @include desktop {
+    font-size: 48px;
+    line-height: 56px;
+    margin-bottom: 20px;
+  }
 }
 .info_block__desc {
-  font-size: 16px;
   line-height: 22px;
   letter-spacing: -0.02em;
+  @include mobileplus {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  @include desktop {
+    font-size: 16px;
+    margin-bottom: 64px;
+  }
+}
+.avatar {
+  border-radius: 30px;
+  @include tablet {
+    width: 397px;
+  }
+  @include desktop {
+    width: 568px;
+    height: 530px;
+  }
+}
+.link {
+  display: flex;
+  @include mobileplus{
+    justify-content: center;
+  }
+@include tablet{
 
-  margin-bottom: 64px;
+}
 }
 .info_block__btn {
   width: 267px;
@@ -61,7 +125,7 @@
   letter-spacing: 0em;
 
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: $hover-color;
   }
 }

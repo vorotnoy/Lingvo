@@ -15,7 +15,7 @@ const OrderSchema = Yup.object().shape({
   phone: Yup.string().min(9, "must be more than 9").required("Required"),
 });
 
-export const ModalOrder = ({ onClose }) => {
+export const ModalOrder = ({ onClose, name }) => {
   const formik = useFormik({
     initialValues: {
       reason: "",
@@ -28,7 +28,6 @@ export const ModalOrder = ({ onClose }) => {
         values: { reason: "", name: "", email: "", number: "" },
       });
       onClose();
-      console.log(values);
     },
 
     validationSchema: OrderSchema,
@@ -39,14 +38,13 @@ export const ModalOrder = ({ onClose }) => {
   }, [onClose]);
 
   const changeReason = (e) => {
-    console.log(e.currentTarget.value);
     const value = e.currentTarget.value;
     formik.values.reason = value;
   };
   return (
-    <BackdropModal closeModal={onClose} >
+    <BackdropModal closeModal={onClose}>
       <div className={s.wrapper}>
-        <div className={s.modal_block}>
+        <form className={s.modal_block} onSubmit={formik.handleSubmit}>
           <svg
             width="32"
             height="32"
@@ -55,9 +53,8 @@ export const ModalOrder = ({ onClose }) => {
           >
             <use href={svg + "#icon-close"}></use>
           </svg>
-          <form onSubmit={formik.handleSubmit}>
-            <h3 className={s.modal_title}>Book trial lesson</h3>
-            <div className={s.scroll_block}>
+          <h3 className={s.modal_title}>Book trial lesson</h3>
+          <div className={s.scroll_block}>
             <p className={s.modal_desc}>
               Our experienced tutor will assess your current language level,
               discuss your learning goals, and tailor the lesson to your
@@ -183,12 +180,11 @@ export const ModalOrder = ({ onClose }) => {
                 )}
               </label>
             </div>
-            <button type="submit" className={s.modal_btn}>
-              Book
-            </button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <button type="submit" className={s.modal_btn}>
+            Book
+          </button>
+        </form>
       </div>
     </BackdropModal>
   );

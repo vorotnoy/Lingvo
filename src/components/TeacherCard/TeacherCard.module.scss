@@ -3,16 +3,38 @@
 
 .wrapper {
   display: flex;
-  width: 1184px;
-  padding: 24px;
+  position: relative;
+
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 32px;
+
   border-radius: 24px;
   background-color: $main-bckgrd;
+
+  @include mobileplus{
+    flex-wrap: wrap;
+    padding: 15px;
+  }  
+  @include tablet{
+    padding: 20px;
+    flex-direction: column;
+  }
+  @include desktop{
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 1184px;
+    margin-bottom: 32px;
+    padding: 24px;
+  }
 }
 .avatar {
-  margin-right: 48px;
+  @include tablet{
+    margin-bottom: 15px;
+  }
+  @include desktop{
+    margin-right: 48px;
+  }
+
 }
 .avatar_circle {
   display: flex;
@@ -57,18 +79,48 @@
 }
 
 .teacher_block {
+  @include desktop{
   width: 968px;
+  }
 }
 
 .teacher_stat {
   display: flex;
+  @include mobileplus{
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  @include tablet{
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  @include desktop{
+    flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
+  margin-right: 50px;
+  }
+}
+.teacher_stat__lang{
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+letter-spacing: 0em;
+
+color: $text-color;
+
 }
 .teacher_stat__list {
   display: flex;
-  align-items: center;
+  @include mobileplus{
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  @include desktop{
+    align-items: center;
+  }
+  
 }
 .teacher_stat__list > li:not(:last-child) {
   &::after {
@@ -102,6 +154,7 @@ color: $online-color;
 
 }
 .teacher_stat__svg {
+
   margin-right: 8px;
 }
 .teacher_name {
@@ -145,6 +198,7 @@ color: $online-color;
 }
 .teacher_lavel {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 .teacher_level__true,
@@ -234,5 +288,9 @@ color: $online-color;
   margin-bottom: 32px;
 }
 .svg_heart{
+  position: absolute;
+  top: 25px;
+  right: 20px;
+
   cursor: pointer;
 }

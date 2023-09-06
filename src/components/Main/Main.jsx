@@ -4,14 +4,13 @@ import { Statistic } from "../Statistic/Statistic";
 import { NavLink } from "react-router-dom";
 
 export const Main = () => {
-  // console.log('main')
   return (
     <section className={s.wrapper}>
       <div className={s.info_block}>
         <div className={s.info_block__content}>
           <h2 className={s.info_block__title}>
             Unlock your potential with the best
-            <span className={s.info_block__span}>language</span> tutors
+            <span className={s.info_block__span}> language</span> tutors
           </h2>
           <p className={s.info_block__desc}>
             Embark on an Exciting Language Journey with Expert Language Tutors:
@@ -19,7 +18,7 @@ export const Main = () => {
             highly qualified and experienced tutors.
           </p>
 
-          <NavLink to='/teachers'>
+          <NavLink to="/teachers" className={s.link}>
             <button type="button" className={s.info_block__btn}>
               Get started
             </button>

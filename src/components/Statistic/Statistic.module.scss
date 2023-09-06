@@ -1,4 +1,5 @@
 @import "../../assets/styles/utils/vars";
+@import "../../assets/styles/utils/mixins";
 
 .wrapper {
   border: 1.5px dashed $btn-color;
@@ -7,11 +8,30 @@
 .statistic_list {
   display: flex;
   justify-content: center;
+  @include mobileplus{
+    flex-direction: column;
+  }
+  @include tablet{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 .statistic_list > li:not(:last-child) {
-  margin-right: 100px;
+  @include tablet{
+    margin-right: 50px;
+  }
+  @include desktop{
+    margin-right: 100px;
+  }
+ 
 }
 .statistic_item{
+  @include mobileplus{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
     margin-top: 40px;
     margin-bottom: 40px;
 }

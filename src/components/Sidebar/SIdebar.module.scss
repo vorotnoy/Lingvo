@@ -1,0 +1,30 @@
+@import "../../assets/styles/utils/vars";
+@import '../../assets/styles/utils/mixins';
+
+
+.wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+
+
+    background-color: $main-bckgrd;
+}
+.nav_block{
+    position: relative;
+    height: 100vh;
+    max-height: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.svg_close{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+
+    stroke: $main-color;
+}

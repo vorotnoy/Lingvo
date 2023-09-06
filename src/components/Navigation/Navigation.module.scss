@@ -3,6 +3,10 @@
 
 .link_list{
     display: flex;
+    @include mobileplus{
+        flex-direction: column;
+        margin-top: 20px;
+    }
 }
 .link_list >li:not(:last-child){
 margin-right: 28px;

@@ -1,9 +1,7 @@
 import s from "./Registration.module.scss";
 import svg from "../../assets/icons/sprite.svg";
-import { useState } from "react";
 
-export const Registration = ({ signin, signup}) => {
-
+export const Registration = ({ signin, signup }) => {
   return (
     <div className={s.wrapper}>
       <button type="button" className={s.btn_login} onClick={signin}>

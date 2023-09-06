@@ -1,10 +1,7 @@
 import s from "./Logout.module.scss";
 import svg from "../../assets/icons/sprite.svg";
-import {selectUid} from '../../redux/auth/authSelectors'
-import { useSelector } from "react-redux";
 
 export const Logout = ({logout}) => {
-const user = useSelector(selectUid)
   return (
     <>
       <div className={s.wrapper}>

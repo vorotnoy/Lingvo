@@ -46,7 +46,7 @@ export const logOutUserFirebase = () => {
 export const loginUserFirebase = async ({ email, password }) => {
   try {
     const credentials = await signInWithEmailAndPassword(auth, email, password)
-    return credentials.user.uid;
+    return credentials.user;
   } catch (error) {
     throw error;
   }

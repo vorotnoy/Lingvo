@@ -24,6 +24,7 @@
   @include mobileplus {
     flex-direction: column;
   }
+  justify-content: space-between;
 }
 .info_block__content {
   border-radius: 30px;

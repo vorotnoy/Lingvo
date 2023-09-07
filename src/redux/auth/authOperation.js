@@ -5,7 +5,7 @@ import {
   logOutUserFirebase,
   loginUserFirebase,
 } from "../../services/firebase/auth";
-import { resetAll } from "../Teachers/teacherOperation";
+import {Notify} from 'notiflix';
 
 export const addUser = createAsyncThunk(
   "auth/adduser",
@@ -14,7 +14,8 @@ export const addUser = createAsyncThunk(
       const newUser = await createUserFirebase(dataUser);
       return newUser;
     } catch (error) {
-      console.log("error", error);
+      Notify.failure("wrong auth");
+   
       thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -37,9 +38,9 @@ export const loginUser = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const getUser = await loginUserFirebase(user);
-      return getUser;
+      return getUser.uid;
     } catch (error) {
-      console.log("error", error);
+      Notify.failure('wrong auth')
       thunkAPI.rejectWithValue(error.message);
     }
   }
